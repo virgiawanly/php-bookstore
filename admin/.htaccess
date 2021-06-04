@@ -1,0 +1,2 @@
+RewriteEngine On
+ErrorDocument 404 "http://localhost/bookstore/404.php"

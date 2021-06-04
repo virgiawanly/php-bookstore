@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 function base_url($url = '')
 {
@@ -12,4 +12,30 @@ function base_url($url = '')
         $baseurl .= $url;
     }
     return $baseurl;
+}
+
+function upload_image($file, $directory)
+{
+    if ($file['error'] !== 4) {
+        $fileName = $file['name'];
+        $fileSize = $file['size'];
+        $fileDir = $file['tmp_name'];
+
+        # allowed file type
+        $allowedType = ['jpg', 'jpeg', 'png', 'webp', 'svg'];
+
+        # get file extension
+        $fileExtension = explode('.', $fileName);
+        $fileExtension = strtolower(end($fileExtension));
+
+        # generate new unique name
+        $newFileName = uniqid() . "." . $fileExtension;
+
+        # move file
+        move_uploaded_file($fileDir, $directory . $newFileName);
+    } else {
+        $newFileName = null;
+    }
+
+    return $newFileName;
 }

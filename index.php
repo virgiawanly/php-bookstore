@@ -12,7 +12,7 @@ require_once "functions.php";
             <div class="col-lg-6 py-5">
                 <h1 style="font-weight: bold; color: #34364A;" class="mb-4 mb-lg-5">Distributor Buku Resmi dan Terbaik se-Smakzie</h1>
                 <p style="line-height: 1.8em;" class="mb-4 mb-lg-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A distinctio, molestiae et saepe sit perferendis voluptatibus nemo vel, alias in quia expedita, nesciunt culpa autem?</p>
-                <div class="row" style="">
+                <div class="row">
                     <div class="col-md-7">
                         <button class="btn btn-primary rounded-pill w-100 mb-3" style="padding: 10px 40px">Belanja Sekarang!</button>
                     </div>
