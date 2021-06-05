@@ -1,17 +1,12 @@
 <?php
 
 if (!isset($_SESSION['login'])) {
-    header("Location: ../login.php");
+    header("Location: login.php");
     exit;
 }
 
-if ($_SESSION['user']['role'] != 'Admin') {
-    header("Location: ../index.php");
-    exit;
-}
-
-require_once "../connection.php";
-require_once "../functions.php";
+require_once "connection.php";
+require_once "functions.php";
 if (!isset($active_page)) {
     $active_page = "";
 }
@@ -31,7 +26,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <title>IDEA Store</title>
 
@@ -152,22 +147,17 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
             <div class="px-3 py-5" id="sidebar">
 
                 <div class="px-3 pb-3">
-                    <img src="<?= base_url('img/avatar/default-avatar.svg') ?>" style="max-width: 75px; max-height:75px; border-radius: 100%;" alt="">
+                    <a href="<?= base_url('my-profile.php') ?>"> <img src="<?= base_url('img/avatar/default-avatar.svg') ?>" style="max-width: 75px; max-height:75px; border-radius: 100%;" alt=""></a>
                     <h6 style="font-weight: bold;" class="text-dark mt-4"><?= $user['name'] ?></h6>
                     <p class="text-secondary" style="font-size: 0.9em;"><?= $user['role'] ?></p>
                 </div>
 
                 <!-- Sidebar Items -->
                 <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a href="index.php" class="nav-link my-2 py-2<?= ($active_page == '' ? ' active' : ''); ?>"><i class="fas fa-fw fa-tachometer-alt me-2"></i> <span>Dashboard</span></a>
-                    </li>
-                    <li class="nav-item"><a href="books.php" class="nav-link my-2 py-2<?= ($active_page == 'books' ? ' active' : ''); ?>"><i class="fas fa-fw fa-book me-2"></i> <span>Buku</span></a></li>
-                    <li class="nav-item"><a href="categories.php" class="nav-link my-2 py-2<?= ($active_page == 'categories' ? ' active' : ''); ?>"><i class="fas fa-fw fa-tags me-2"></i> <span>Kategori</span></a></li>
-
-                    <li class="nav-item"><a href="orders.php" class="nav-link my-2 py-2<?= ($active_page == 'orders' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-bag me-2"></i> <span>Order</span></a></li>
-
                     <li class="nav-item"><a href="#" class="nav-link my-2 py-2<?= ($active_page == 'profile' ? ' active' : ''); ?>"><i class="fas fa-fw fa-user me-2"></i> <span>Profile</span></a></li>
+                    <li class="nav-item"><a href="orders.php" class="nav-link my-2 py-2<?= ($active_page == 'cart' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-cart me-2"></i> <span>Keranjang</span></a></li>
+                    <li class="nav-item"><a href="orders.php" class="nav-link my-2 py-2<?= ($active_page == 'order' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-bag me-2"></i> <span>Pembelian</span></a></li>
+
                     <li class="nav-item"><a type="button" data-bs-toggle="modal" data-bs-target="#logoutModal" class="nav-link my-1 py-2"><i class="fas fa-fw fa-sign-out-alt me-2"></i> <span>Logout</span></a></li>
 
                 </ul>

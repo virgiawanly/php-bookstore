@@ -121,6 +121,23 @@
         .filter-card label {
             font-size: 0.9em;
         }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            width: 100%;
+        }
+
+
+        form .form-control::placeholder {
+            font-size: 0.8em !important;
+        }
+
+        form .form-group label {
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 
@@ -151,7 +168,13 @@
                     </li>
                 </ul>
                 <div>
-                    <button class="btn btn-primary rounded-pill py-2 px-4" style="font-size: 0.9em; background-color: #2447f9;">Login</button>
+                    <?php if (isset($_SESSION['login'])) : ?>
+                        <form action="<?= base_url('logout.php') ?>" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-primary rounded-pill py-2 px-4" name="logout" value="true" style="font-size: 0.9em; background-color: #2447f9;">Logout</button>
+                        </form>
+                    <?php else : ?>
+                        <a href="login.php" class="btn btn-primary rounded-pill py-2 px-4" style="font-size: 0.9em; background-color: #2447f9;">Login</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

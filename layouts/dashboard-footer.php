@@ -19,7 +19,7 @@
 </div>
 
 <!-- Bootstrap CSS -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 <!-- Fontawesome -->
 <script src="https://kit.fontawesome.com/536d761c41.js" crossorigin="anonymous"></script>

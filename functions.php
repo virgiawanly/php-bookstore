@@ -39,3 +39,18 @@ function upload_image($file, $directory)
 
     return $newFileName;
 }
+
+function setFlash($name, $message = "", $type = "success")
+{
+    $_SESSION["$name"] = "<div class='alert alert-$type alert-dismissible fade show' role='alert'>$message
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>";
+}
+
+function getFlash($name)
+{
+    if (isset($_SESSION["$name"])) {
+        echo $_SESSION["$name"];
+        unset($_SESSION["$name"]);
+    }
+}
