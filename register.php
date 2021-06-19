@@ -30,7 +30,7 @@ if (isset($_POST['register'])) {
 	$newPass = password_hash($password, PASSWORD_DEFAULT);
 
 	// Buat Akun
-	$sql = "INSERT INTO users (`name`, `email`, `password`, `role`) VALUES('$name', '$email', '$newPass', '$role')";
+	$sql = "INSERT INTO users (`name`, `email`, `password`, `role`, `avatar`) VALUES('$name', '$email', '$newPass', '$role', 'default-avatar.svg')";
 	mysqli_query($conn, $sql);
 
 

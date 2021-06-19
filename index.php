@@ -2,6 +2,7 @@
 
 session_start();
 require_once "functions.php";
+$bestProducts = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM books LIMIT 3"), MYSQLI_ASSOC);
 
 ?>
 
@@ -9,21 +10,42 @@ require_once "functions.php";
 
 <header style="min-height: 85vh;" class="d-flex align-items-center">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 py-5">
-                <h1 style="font-weight: bold; color: #34364A;" class="mb-4 mb-lg-5">Distributor Buku Resmi dan Terbaik se-Smakzie</h1>
-                <p style="line-height: 1.8em;" class="mb-4 mb-lg-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A distinctio, molestiae et saepe sit perferendis voluptatibus nemo vel, alias in quia expedita, nesciunt culpa autem?</p>
-                <div class="row">
-                    <div class="col-md-7">
-                        <button class="btn btn-primary rounded-pill w-100 mb-3" style="padding: 10px 40px">Belanja Sekarang!</button>
-                    </div>
-                    <div class="col-md-5">
-                        <button class="btn rounded-pill w-100 btn-light" style="padding: 10px 40px;">Cara Order</button>
+        <!-- Desktop -->
+        <div class="d-none d-md-block">
+            <div class="row">
+                <div class="col-lg-6 py-5">
+                    <h1 style="color: #34364A;" class="mb-4 mb-lg-5 fw-bold">Distributor Buku Resmi dan Terbaik se-Smakzie</h1>
+                    <p class="mb-4 mb-lg-5 lh-lg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A distinctio, molestiae et saepe sit perferendis voluptatibus nemo vel, alias in quia expedita, nesciunt culpa autem?</p>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <a href="shop.php" class="btn btn-primary rounded-pill w-100 mb-3" style="padding: 10px 40px">Belanja Sekarang!</a>
+                        </div>
+                        <div class="col-md-5">
+                            <a class="btn rounded-pill w-100 btn-light" style="padding: 10px 40px;">Cara Order</a>
+                        </div>
                     </div>
                 </div>
+                <div class="col-lg-6 d-flex align-items-center justify-content-center">
+                    <img class="w-75" src="<?= base_url('img/header-image.svg') ?>" alt="">
+                </div>
             </div>
-            <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                <img class="w-75" src="<?= base_url('img/header-image.svg') ?>" alt="">
+        </div>
+
+        <!-- Mobile -->
+        <div class="d-block d-md-none">
+            <div class="row text-center px-3">
+                <div class="col-lg-6 py-5">
+                    <h1 style="color: #34364A;" class="fw-bold mb-4 mb-lg-5 display-3">Distributor Buku Resmi dan Terbaik se-Smakzie</h1>
+                    <p class="mb-4 mb-lg-5 lh-lg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A distinctio, molestiae et saepe sit perferendis voluptatibus nemo vel, alias in quia expedita, nesciunt culpa autem?</p>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <a href="shop.php" class="btn btn-primary rounded-pill w-100 mb-3" style="padding: 10px 40px">Belanja Sekarang!</a>
+                        </div>
+                        <div class="col-md-5">
+                            <a class="btn rounded-pill w-100 btn-light" style="padding: 10px 40px;">Cara Order</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -33,38 +55,22 @@ require_once "functions.php";
     <div class="container pb-5">
         <div class="row justify-content-center text-center">
             <div class="col-md-5">
-                <h2 style="color: #34364A; font-weight: 600;">Buku Paling Populer Sepanjang Tahun 2021</h2>
+                <h2 style="color: #34364A;" class="fw-bold">Buku Paling Populer Sepanjang Tahun 2021</h2>
                 <p class="text-secondary mt-3 mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam ea provident obcaecati pariatur.</p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="product-card">
-                    <a href=""><img src="<?= base_url('img/books/buku1.jpg') ?>" alt="Buku 1"></a>
-                    <a href="" class="text-decoration-none">
-                        <h5 style="font-weight: bold;" class="mt-4">Eloquent Javascript Third Edition</h5>
-                    </a>
-                    <p class="text-secondary mb-0">Rp 64.000</p>
+            <?php foreach ($bestProducts as $p) : ?>
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <div class="product-card">
+                        <a href="product.php?p=<?= $p['slug'] ?>"><img src="<?= base_url('img/books/') . $p['thumbnail'] ?>" alt="Buku 1"></a>
+                        <a href="product.php?p=<?= $p['slug'] ?>" class="text-decoration-none">
+                            <h6 class="text-dark fw-bold mt-4"><?= $p['title'] ?></h6>
+                        </a>
+                        <p class="text-secondary mb-0">Rp <?= $p['price'] ?></p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="product-card">
-                    <a href=""><img src="<?= base_url('img/books/buku2.jpg') ?>" alt="Buku 1"></a>
-                    <a href="" class="text-decoration-none">
-                        <h5 style="font-weight: bold;" class="mt-4">Bicara Itu Ada Seninya</h5>
-                    </a>
-                    <p class="text-secondary mb-0">Rp 64.000</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="product-card">
-                    <a href=""><img src="<?= base_url('img/books/buku1.jpg') ?>" alt="Buku 1"></a>
-                    <a href="" class="text-decoration-none">
-                        <h5 style="font-weight: bold;" class="mt-4">Eloquent Javascript Third Edition</h5>
-                    </a>
-                    <p class="text-secondary mb-0">Rp 64.000</p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
@@ -73,7 +79,7 @@ require_once "functions.php";
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-md-5">
-                <h2 style="color: #34364A; font-weight: 600;">Tersedia Berbagai Kategori Buku!</h2>
+                <h2 style="color: #34364A;" class="fw-bold">Tersedia Berbagai Kategori Buku!</h2>
                 <p class="text-secondary mt-3 mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni et vitae qui, error id quia!</p>
             </div>
         </div>
@@ -139,7 +145,7 @@ require_once "functions.php";
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-md-5">
-                <h2 style="color: #34364A; font-weight: 600;" class="mb-5">Testimonials</h2>
+                <h2 style="color: #34364A;" class="mb-5 fw-bold">Testimonials</h2>
             </div>
         </div>
 
@@ -147,7 +153,7 @@ require_once "functions.php";
             <div class="col-md-4 mb-4">
                 <div class="testimoni-card">
                     <img src="<?= base_url('img/iqbal.jpg') ?>" alt="">
-                    <h5 style="font-weight: bold;" class="mt-4">Iqbal Maulana Asyari</h5>
+                    <h5 class="mt-4 fw-bold">Iqbal Maulana Asyari</h5>
                     <p class="text-secondary">Pelajar SMK</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque quod quasi repellat ab veritatis. Sunt, quas laboriosam. Sint voluptatibus nulla eos id.</p>
                 </div>
@@ -155,7 +161,7 @@ require_once "functions.php";
             <div class="col-md-4 mb-4">
                 <div class="testimoni-card">
                     <img src="<?= base_url('img/rajah.jpg') ?>" alt="">
-                    <h5 style="font-weight: bold;" class="mt-4">Rajah Rayvles Pangkey</h5>
+                    <h5 class="mt-4 fw-bold">Rajah Rayvles Pangkey</h5>
                     <p class="text-secondary">Wibu</p>
                     <p>Jangan menghancurkan hati seseorang, mereka hanya memilikinya satu. Hancurkan saja tulang mereka, manusia memiliki 206 tulang.</p>
                 </div>
@@ -163,7 +169,7 @@ require_once "functions.php";
             <div class="col-md-4 mb-4">
                 <div class="testimoni-card">
                     <img src="<?= base_url('img/padika.jpg') ?>" alt="">
-                    <h5 style="font-weight: bold;" class="mt-4">Sandhika Galih</h5>
+                    <h5 class="mt-4 fw-bold">Sandhika Galih</h5>
                     <p class="text-secondary">Dosen & Youtuber</p>
                     <p>Halo temen-temen semua! apa kabar? Kembali lagi di channel Web Programming Unpas Bersama saya Sandhika Galih dan jangan lupa titik koma!</p>
                 </div>

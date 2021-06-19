@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-5">
                 <img src="<?= base_url('img/literazie-logo.svg') ?>" class="mb-4" style="height:50px;" alt="">
-                <p>Distributor Buku Terfavorit se-Smakzie yang menyediakan berbagai macam buku seperti novel, komik, buku pengetahuan, dll. LiteraZie berkomitmen memenuhi antusiasme masyarakat dalam mengembangkan ilmu pengetahuan.</p>
+                <p class="lh-lg">Distributor Buku Terfavorit se-Smakzie yang menyediakan berbagai macam buku seperti novel, komik, buku pengetahuan, dll. LiteraZie berkomitmen memenuhi antusiasme masyarakat dalam mengembangkan ilmu pengetahuan.</p>
             </div>
             <div class="col-md-2">
                 <nav class="nav flex-column">
@@ -39,5 +39,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/536d761c41.js" crossorigin="anonymous"></script>
 
 </footer>

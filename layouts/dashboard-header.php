@@ -28,7 +28,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <title>IDEA Store</title>
+    <title>Literazie</title>
 
     <style>
         * {
@@ -154,9 +154,10 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
 
                 <!-- Sidebar Items -->
                 <ul class="nav flex-column">
-                    <li class="nav-item"><a href="#" class="nav-link my-2 py-2<?= ($active_page == 'profile' ? ' active' : ''); ?>"><i class="fas fa-fw fa-user me-2"></i> <span>Profile</span></a></li>
-                    <li class="nav-item"><a href="orders.php" class="nav-link my-2 py-2<?= ($active_page == 'cart' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-cart me-2"></i> <span>Keranjang</span></a></li>
-                    <li class="nav-item"><a href="orders.php" class="nav-link my-2 py-2<?= ($active_page == 'order' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-bag me-2"></i> <span>Pembelian</span></a></li>
+                    <li class="nav-item"><a href="<?= base_url() ?>" class="nav-link my-2 py-2"><i class="fas fa-fw fa-home me-2"></i> <span>Home</span></a></li>
+                    <li class="nav-item"><a href="my-profile.php" class="nav-link my-2 py-2<?= ($active_page == 'profile' ? ' active' : ''); ?>"><i class="fas fa-fw fa-user me-2"></i> <span>Profile</span></a></li>
+                    <li class="nav-item"><a href="cart.php" class="nav-link my-2 py-2<?= ($active_page == 'cart' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-cart me-2"></i> <span>Keranjang</span></a></li>
+                    <li class="nav-item"><a href="my-orders.php" class="nav-link my-2 py-2<?= ($active_page == 'order' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-bag me-2"></i> <span>Pembelian</span></a></li>
 
                     <li class="nav-item"><a type="button" data-bs-toggle="modal" data-bs-target="#logoutModal" class="nav-link my-1 py-2"><i class="fas fa-fw fa-sign-out-alt me-2"></i> <span>Logout</span></a></li>
 

@@ -5,6 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERV
     include "../404.php";
     die();
 }
+session_start();
 
 require_once "../functions.php";
 require_once "../connection.php";
@@ -29,8 +30,8 @@ if ($_FILES['thumbnail']['error'] === 4) {
 
     // Delete file lama
     if ($currentThumbnail != 'default-cover.svg' && $thumbnail != null) {
-        if (file_exists(base_url('../img/products/') . $currentThumbnail)) {
-            unlink(base_url('../img/products/') .  $currentThumbnail);
+        if (file_exists('../img/books/' . $currentThumbnail)) {
+            unlink('../img/books/' .  $currentThumbnail);
         }
     }
 }
@@ -46,9 +47,9 @@ $sql = "UPDATE `books` SET `title` = '$title',
 mysqli_query($conn, $sql);
 
 if (mysqli_affected_rows($conn) > 0) {
-    header("Location: books.php");
-    exit;
+    setFlash('alert', 'Buku berhasil diupdate.');
 } else {
-    header("Location: books.php");
-    exit;
+    setFlash('alert', 'Terjadi kesalahan.', 'danger');
 }
+header("Location: books.php");
+exit;

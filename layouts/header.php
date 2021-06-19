@@ -138,12 +138,22 @@
             font-weight: 500;
             margin-bottom: 5px;
         }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 
 <body>
-
-
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container py-4">
             <a class="navbar-brand" href="#">
@@ -168,13 +178,19 @@
                     </li>
                 </ul>
                 <div>
-                    <?php if (isset($_SESSION['login'])) : ?>
-                        <form action="<?= base_url('logout.php') ?>" method="POST" class="d-inline">
-                            <button type="submit" class="btn btn-primary rounded-pill py-2 px-4" name="logout" value="true" style="font-size: 0.9em; background-color: #2447f9;">Logout</button>
-                        </form>
-                    <?php else : ?>
-                        <a href="login.php" class="btn btn-primary rounded-pill py-2 px-4" style="font-size: 0.9em; background-color: #2447f9;">Login</a>
-                    <?php endif; ?>
+                    <div class="d-flex align-items-center">
+                        <a href="cart.php" class="text-primary rounded-circle btn btn-light d-flex justify-content-center align-items-center me-2" style="width: 50px; height:50px; background-color: #ECF2FF;">
+                            <i class="fas fa-shopping-cart fa-fw"></i>
+                        </a>
+                        <?php if (isset($_SESSION['login'])) : ?>
+                            <a href="<?= $_SESSION['user']['role'] == 'Admin' ? 'admin' : 'my-profile.php' ?>" class="text-decoration-none text-dark">
+                                <img src="<?= base_url('img/avatar/') . $_SESSION['user']['avatar'] ?>" style="width:50px; height: 50px; object-fit: cover;" class="me-2" alt="">
+                                <span><?= $_SESSION['user']['name'] ?></span>
+                            </a>
+                        <?php else : ?>
+                            <a href="login.php" class="btn btn-primary rounded-pill py-2 px-4" style="font-size: 0.9em; background-color: #2447f9;">Login</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>

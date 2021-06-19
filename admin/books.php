@@ -20,6 +20,7 @@ $categories = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM categories"), 
 </div>
 
 <div class="card p-4">
+    <?php getFlash('alert') ?>
     <table class="table table-sm table-borderless align-middle">
         <thead>
             <tr>

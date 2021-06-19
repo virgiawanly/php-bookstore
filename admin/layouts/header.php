@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 if (!isset($_SESSION['login'])) {
     header("Location: ../login.php");
     exit;
@@ -9,7 +10,6 @@ if ($_SESSION['user']['role'] != 'Admin') {
     header("Location: ../index.php");
     exit;
 }
-
 require_once "../connection.php";
 require_once "../functions.php";
 if (!isset($active_page)) {
@@ -33,7 +33,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
     <!-- Bootstrap CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-    <title>IDEA Store</title>
+    <title>Literazie</title>
 
     <style>
         * {
@@ -159,6 +159,7 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
 
                 <!-- Sidebar Items -->
                 <ul class="nav flex-column">
+                    <li class="nav-item"><a href="<?= base_url() ?>" class="nav-link my-2 py-2"><i class="fas fa-fw fa-home me-2"></i> <span>Home</span></a></li>
                     <li class="nav-item">
                         <a href="index.php" class="nav-link my-2 py-2<?= ($active_page == '' ? ' active' : ''); ?>"><i class="fas fa-fw fa-tachometer-alt me-2"></i> <span>Dashboard</span></a>
                     </li>
@@ -166,8 +167,6 @@ $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` WHERE `id`
                     <li class="nav-item"><a href="categories.php" class="nav-link my-2 py-2<?= ($active_page == 'categories' ? ' active' : ''); ?>"><i class="fas fa-fw fa-tags me-2"></i> <span>Kategori</span></a></li>
 
                     <li class="nav-item"><a href="orders.php" class="nav-link my-2 py-2<?= ($active_page == 'orders' ? ' active' : ''); ?>"><i class="fas fa-fw fa-shopping-bag me-2"></i> <span>Order</span></a></li>
-
-                    <li class="nav-item"><a href="#" class="nav-link my-2 py-2<?= ($active_page == 'profile' ? ' active' : ''); ?>"><i class="fas fa-fw fa-user me-2"></i> <span>Profile</span></a></li>
                     <li class="nav-item"><a type="button" data-bs-toggle="modal" data-bs-target="#logoutModal" class="nav-link my-1 py-2"><i class="fas fa-fw fa-sign-out-alt me-2"></i> <span>Logout</span></a></li>
 
                 </ul>
